@@ -46,7 +46,10 @@ namespace TaskERP.Data
 						UserName = "Admin",
 						NormalizedUserName = "ADMIN",
 						Email = "Admin@admin.com",
-						PasswordHash = hasher.HashPassword(null, "Pa$$w0rd")
+						NormalizedEmail = "ADMIN@ADMIN.COM",
+						PasswordHash = hasher.HashPassword(null, "Pa$$w0rd"),
+						SecurityStamp = Guid.NewGuid().ToString(),
+						ConcurrencyStamp= Guid.NewGuid().ToString()
 					}
 				);
 
