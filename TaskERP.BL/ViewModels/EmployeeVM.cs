@@ -18,7 +18,7 @@ namespace TaskERP.BLL.ViewModels
 		[RegularExpression("^[a-zA-Z ]+$", ErrorMessage = "Only letters and spaces allowed")]
 		public string Name { get; set; }
 		[Required]
-		[RegularExpression(@"^[1-2]\d{13}$", ErrorMessage = "Invalid national ID")]
+		[RegularExpression(@"^[1-3]\d{13}$", ErrorMessage = "Invalid national ID")]
 		public string NationalID { get; set; }
 		[Required]
 		public DateTime DateOfBirth { get; set; }
