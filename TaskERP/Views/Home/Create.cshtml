@@ -1,0 +1,196 @@
+﻿@model EmployeeVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+		@section Admin {
+			@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+		}
+				<div class="app-content page-body">
+			<div class="container">
+
+				<!--Page header-->
+				<div class="page-header">
+					<div class="page-leftheader">
+						<h4 class="page-title">Create Emloyee</h4>
+						<ol class="breadcrumb pl-0">
+							<li class="breadcrumb-item"><a asp-controller="Home" asp-action="AdminIndex">Home</a></li>
+							<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Create">Create</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Create Employee</li>
+						</ol>
+					</div>
+				</div>
+				<!--End Page header-->
+
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12">
+						<form asp-controller="Home" asp-action="Create" class="card">
+							<div class="card-header">
+								<h3 class="card-title">Create Employee</h3>
+								<div class="card-options ">
+									<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+								</div>
+							</div>
+							<div class=" card-body">
+								<div class="row">
+									<div class="col-md-6 col-lg-12">
+
+										@*Name*@
+										<div class="form-group">
+											<label class="form-label" asp-for="Name">Enter Name</label>
+											<input type="text"asp-for="Name" class="form-control"  placeholder="Name">
+											<span asp-validation-for="Name" class="text-danger"></span>
+										</div>
+
+
+										@*NationalId*@
+										<div class="form-group">
+											<label class="form-label" asp-for="NationalID">National Id</label>
+											<input type="number" asp-for="NationalID" class="form-control" placeholder="National Id...." maxlength="14" min="14" >
+											<span asp-validation-for="NationalID" class="text-danger"></span>
+										</div>
+
+
+										@*Date of Birth*@
+										<div class="wd-200 mg-b-30 form-group">
+											<label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fa fa-calendar tx-16 lh-0 op-6"></i>
+													</div>
+										</div><input asp-for="DateOfBirth" onmouseover="findAge()" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text">
+											</div>
+										<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+										</div>
+
+
+
+										@*Age*@
+										<div class="form-group">
+											<label asp-for="Age" class="form-label">Age</label>
+											<input type="text" onmousemove="findAge()" asp-for="Age" class="form-control"  placeholder="Your Age.." value="Your Age. " readonly>
+											<span asp-validation-for="Age" class="text-danger"></span>
+
+										</div>
+
+
+
+										@*Account*@
+										<div class="form-group ">
+											<label asp-for="AccountId" class="form-label">Account</label>
+											<select asp-for="AccountId" class="form-control select2 custom-select"
+												asp-items="@(new SelectList(ViewBag.Accounts , "Id" , "Name"))">
+												<option></option>
+											</select>
+											<span asp-validation-for="AccountId" class="text-danger"></span>
+
+										</div>
+
+
+										@*Line of Business*@
+										<div class="form-group ">
+												<label asp-for="LineOfBusinessId" class="form-label">Line of Business</label>
+												<select asp-for="LineOfBusinessId" class="form-control select2 custom-select"
+													asp-items="@(new SelectList(ViewBag.LineOfBusiness , "Id" , "Name"))">
+													<option></option>
+												</select>
+												<span asp-validation-for="LineOfBusinessId" class="text-danger"></span>
+
+										</div>
+
+
+										@*Language*@
+										<div class="form-group ">
+											<label asp-for="LanguageId" class="form-label">Language</label>
+											<select asp-for="LanguageId" class="form-control select2 custom-select"
+													asp-items="@(new SelectList(ViewBag.Language , "Id" , "Name"))">
+												<option></option>
+											</select>
+											<span asp-validation-for="LanguageId" class="text-danger"></span>
+
+										</div>
+
+
+										<div class="form-group ">
+													<label asp-for="Leveles"  class="form-label">Leveles</label>
+													<select asp-for="Levelelist" class="form-control select2 custom-select"
+											asp-items="@(new SelectList(ViewBag.LanguageLeveles , "Id" , "Name"))" multiple>
+														<option></option>
+													</select>
+													<span asp-validation-for="Leveles" class="text-danger"></span>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<center>
+								<div class="col-md-4 mb-5">
+									<input type="submit" class="btn btn-info  mb-1" value="Create Employee" />
+									<a asp-controller="Home" asp-action="AdminIndex" class="btn w-40 ml-3 btn-info">Return</a>
+								</div>
+							</center>
+						</form>
+					</div>
+				</div>
+				<!-- End Row-->
+
+			</div>
+		</div><!-- end app-content-->
+
+
+		@section scripts {
+			<script src="~/plugins/jquery-validate/jquery.validate.min.js"></script>
+			<script src="~/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+			<script src=""></script>
+
+			<script>
+				$(document).ready(function(){
+					$('#AccountId').on('change',function(){
+						var accountId = $(this).val();
+						var lineList = $('#LineOfBusinessId');
+
+						lineList.empty();
+						lineList.append('<option label="Choose one">Choose One</option>')
+
+						if(accountId !== ''){
+							$.ajax({
+								url: '/Home/GetLineOfBusiness?accountId=' + accountId,
+								success : function(lines){
+									$.each(lines , function(i , line){
+										lineList.append($('<option></option>').attr('value', line.id).text(line.name));
+									});
+								},
+								error : function(){
+									alert('Something went wrong ! ');
+								}
+							});
+						}
+					})
+				});
+
+				function findAge() {
+					var day = document.getElementById('DateOfBirth').value;
+					var DOB = new Date(day);
+					var today = new Date();
+					var age = today.getTime() - DOB.getTime();
+					age = Math.floor(age/(1000*60*60*24*365.25));
+					document.getElementById('Age').value = age;
+				}
+
+			</script>
+
+		}
+
+
+
+
+
+
+
+
+
+

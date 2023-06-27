@@ -1,0 +1,149 @@
+﻿@model EmployeeVM
+@inject SignInManager<IdentityUser> signInManager
+@{
+    ViewData["Title"] = "Detail";
+    //Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+
+@section Admin {
+	@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+}
+
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Detail</h4>
+		<ol class="breadcrumb pl-0">
+			@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+			{
+				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="AdminIndex">Home</a></li>
+			}
+			else
+			{
+				<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+			}
+			<li class="breadcrumb-item active" aria-current="page">Detail ( @Model.Name)</li>
+		</ol>
+	</div>
+
+</div>
+<!--End Page header-->
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title fa-2x">Detail ( @Model.Name)</h3>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive push">
+					<table class="table table-bordered table-hover fa-2x">
+						<tbody>
+							<tr>
+								<td class="text-center">ID</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.ID</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Name</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.Name</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">National ID</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.NationalID</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Date Of Birth</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.DateOfBirth.ToString().Split(' ').First()</p>
+								</td>
+							</tr><tr>
+								<td class="text-center">Age</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.Age</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Account</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.Account.Name</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Line Of Buisness</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.LineOfBusiness.Name</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Language</td>
+								<td>
+									<p class="font-w600 mb-1">@Model.Language.Name</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-center">Language Levels</td>
+								<td class="fa-1.8x">
+										@{
+											var charArray = Model.Leveles.ToString().ToCharArray();
+											foreach (var c in charArray)
+											{
+												switch (c)
+												{
+													case '1':
+														<span class="tag"><text>A1 </text></span>
+														break;
+													case '2':
+														<span class="tag"><text>A2 </text></span>
+														break;
+													case '3':
+														<span class="tag"><text>B1 </text></span>
+														break;
+													case '4':
+														<span class="tag"><text>B2 </text></span>
+														break;
+													case '5':
+														<span class="tag"><text>C1 </text></span>
+														break;
+														case '6':
+													<span class="tag"><text>C2 </text></span>
+													break;
+												default:
+													break;
+											}
+										}
+									}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="text-muted text-center">Thank you very much for doing business with us.</p>
+			</div>
+		</div>
+
+		<center>
+			<div class="mb-5">
+				@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+				{
+					<a asp-controller="Home" asp-action="AdminIndex" class="btn w-50 btn-pill btn-info">Return</a>
+				}
+				else
+				{
+					<a asp-controller="Home" asp-action="Index" class="btn w-50 btn-pill btn-info">Return</a>
+				}
+			</div>
+		</center>
+	</div>
+</div>
+
+
+
+
+

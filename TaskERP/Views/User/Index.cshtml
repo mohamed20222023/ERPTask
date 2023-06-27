@@ -1,0 +1,84 @@
+﻿
+@model IEnumerable<IdentityUser>
+@{
+	ViewData["Title"] = "AdminIndex";
+	//Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Admin {
+	@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+}
+
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">All Users</h4>
+		<ol class="breadcrumb pl-0">
+			<li class="breadcrumb-item"><a asp-controller="Home" asp-action="AdminIndex">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Users</li>
+		</ol>
+	</div>
+
+</div>
+<!--End Page header-->
+
+
+
+
+<!--Row-->
+<div class="row">
+	<div class="col-12 col-sm-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">All Users</div>
+				<div class="card-options ">
+					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+
+
+					<table class="table  table-vcenter border mb-0 text-nowrap">
+						<thead class="">
+							<tr>
+								<th>ID</th>
+								<th>UserName</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>@item.Id</td>
+									<td class="text-sm font-weight-600">@item.UserName</td>
+									<td>@item.Email</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--End row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

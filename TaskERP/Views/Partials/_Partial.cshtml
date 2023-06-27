@@ -1,0 +1,34 @@
+﻿
+
+@inject SignInManager<IdentityUser> signInManager
+
+
+
+@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+	<div class="horizontal-main hor-menu clearfix">
+		<div class="horizontal-mainwrapper container clearfix">
+			<nav class="horizontalMenu clearfix">
+				<div class="overlapblackbg"></div>
+				<ul class="horizontalMenu-list">
+					<li aria-haspopup="true">
+						<span class="horizontalMenu-click"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a asp-action="AdminIndex" asp-controller="Home" class="sub-icon "><i class="typcn typcn-device-desktop hor-icon"></i> Employees  <i class="fa fa-angle-down horizontal-icon"></i></a>
+						<ul class="sub-menu">
+							<li aria-haspopup="true"><a asp-action="Create" asp-controller="Home">Create Employee</a></li>
+						</ul>
+					</li>
+					<li aria-haspopup="true">
+						<span class="horizontalMenu-click"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a asp-action="Index" asp-controller="User" class="sub-icon "><i class="typcn typcn-device-desktop hor-icon"></i> Users </a>
+					</li>
+					<li aria-haspopup="true">
+						<span class="horizontalMenu-click"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a asp-action="Index" asp-controller="Role" class="sub-icon"><i class="typcn typcn-folder hor-icon"></i> Roles  <i class="fa fa-angle-down horizontal-icon"></i></a>
+						<ul class="sub-menu">
+							<li aria-haspopup="true"><a asp-action="Create" asp-controller="Role">Create Role</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!--Nav end -->
+		</div>
+	</div>
+}

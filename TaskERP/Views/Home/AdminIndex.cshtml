@@ -1,0 +1,153 @@
+﻿@model IEnumerable<EmployeeVM>
+
+@{
+    ViewData["Title"] = "AdminIndex";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
+<link href="~/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />	
+@section Admin {
+	@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+}
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Employees</h4>
+		<ol class="breadcrumb pl-0">
+			<li class="breadcrumb-item"><a asp-controller="Home" asp-action="AdminIndex">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Employees</li>
+		</ol>
+	</div>
+	<div>
+		<a asp-controller="Home" asp-action="Create" class="btn btn-pill btn-primary w-200">Create Employee</a>
+	</div>
+</div>
+<!--End Page header-->
+
+<button id="excel-button" class="btn btn-green mb-3" onclick="generateExcel()">Excel</button>
+
+<div class="row">
+	<div class="col-md-12 col-lg-12">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Data Tables</div>
+				<div class="card-options ">
+					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+					<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table id="example" class="table table-striped table-bordered w-100">
+						<thead>
+							<tr>
+								<th class="wd-15p">ID</th>
+								<th class="wd-15p">Name</th>
+								<th class="wd-20p">Age</th>
+								<th class="wd-15p">Language</th>
+								<th class="wd-10p">Language Level</th>
+								<th class="wd-25p"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>@item.ID</td>
+									<td class="text-sm font-weight-600">@item.Name</td>
+									<td>@item.Age</td>
+									<td>@item.Language.Name</td>
+									<td>
+										@{
+											var charArray = item.Leveles.ToString().ToCharArray();
+											foreach (var c in charArray)
+											{
+												switch (c)
+												{
+													case '1':
+														<span class="tag"><text>A1 </text></span>
+														break;
+													case '2':
+														<span class="tag"><text>A2 </text></span>
+														break;
+													case '3':
+														<span class="tag"><text>B1 </text></span>
+														break;
+													case '4':
+														<span class="tag"><text>B2 </text></span>
+														break;
+													case '5':
+														<span class="tag"><text>C1 </text></span>
+														break;
+													case '6':
+														<span class="tag"><text>C2 </text></span>
+														break;
+													default:
+														break;
+												}
+											}
+										}
+									</td>
+									<td class="text-center">
+										<a asp-controller="Home" asp-route-id="@item.ID" asp-action="Detail" class="btn btn-pill btn-info">Details</a>
+										<a asp-controller="Home" asp-route-id="@item.ID" asp-action="Edit" class="btn btn-pill btn-warning">Update</a>
+										<a asp-controller="Home" asp-route-id="@item.ID" asp-action="Delete" class="btn btn-pill btn-danger">Delete</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12 col-lg-6">
+		<div class="card">
+			<div class="card-body">
+				<div id="chart"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+@section datatable{
+	<script src="~/plugins/datatable/jquery.dataTables.min.js"></script>
+	<script src="~/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+	<script src="~/js/datatables.js"></script>
+	<script src="~/plugins/apexcharts/apexcharts.min.js"></script>
+	<script src="~/js/dashboard.js"></script>
+	<script>
+		function generateExcel() {
+			var table = document.getElementById("example");
+			var data = [];
+
+			for (var i = 0; i < table.rows.length; i++) {
+				var row = [];
+
+				for (var j = 0; j < table.rows[i].cells.length - 1; j++) { // Exclude the last cell
+					row.push(table.rows[i].cells[j].textContent);
+				}
+
+				data.push(row);
+			}
+
+			var wb = XLSX.utils.book_new();
+			var ws = XLSX.utils.aoa_to_sheet(data);
+			XLSX.utils.book_append_sheet(wb, ws, "Dashboard Data");
+			XLSX.writeFile(wb, "dashboard.xlsx");
+		}
+
+	</script>
+
+
+
+		}

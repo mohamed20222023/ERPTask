@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskERP", "TaskERP\TaskERP.csproj", "{2F923875-4615-46B8-AA67-9998469F5B9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskERP.BLL", "TaskERP.BL\TaskERP.BLL.csproj", "{FEE9B297-1E00-43E1-98D0-4C0AD4732831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskERP.DAL", "TaskERP.DAL\TaskERP.DAL.csproj", "{0DC77925-A004-45A3-94E0-E55F79A3303B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F923875-4615-46B8-AA67-9998469F5B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F923875-4615-46B8-AA67-9998469F5B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F923875-4615-46B8-AA67-9998469F5B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F923875-4615-46B8-AA67-9998469F5B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE9B297-1E00-43E1-98D0-4C0AD4732831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE9B297-1E00-43E1-98D0-4C0AD4732831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE9B297-1E00-43E1-98D0-4C0AD4732831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE9B297-1E00-43E1-98D0-4C0AD4732831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC77925-A004-45A3-94E0-E55F79A3303B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC77925-A004-45A3-94E0-E55F79A3303B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC77925-A004-45A3-94E0-E55F79A3303B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC77925-A004-45A3-94E0-E55F79A3303B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D74990E5-9A5D-4F40-885D-6C5F5C564B51}
+	EndGlobalSection
+EndGlobal

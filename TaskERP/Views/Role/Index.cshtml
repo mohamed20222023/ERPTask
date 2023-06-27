@@ -1,0 +1,56 @@
+﻿@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Admin {
+	@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+}
+
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Roles</h4>
+		<ol class="breadcrumb pl-0">
+			<li class="breadcrumb-item"><a asp-action="AdminIndex" asp-controller="Home">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Roles</li>
+		</ol>
+	</div>
+
+</div>
+<!--End Page header-->
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title fa-2x">Roles</h3>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive push">
+					<table class="table table-bordered table-hover fa-2x">
+						<tbody>
+							@{
+								int counter = 1;
+							}
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td class="text-center">@counter</td>
+									<td>
+										<p class="font-w600 mb-1">@item.Name</p>
+									</td>
+								@(counter++)
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+				<p class="text-muted text-center">Thank you very much for doing business with us.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+

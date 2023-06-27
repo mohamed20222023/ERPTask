@@ -1,0 +1,154 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Delete";
+    //Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+
+@section Admin {
+	@await Html.PartialAsync("~/Views/Partials/_partial.cshtml");
+}
+
+
+<div class="app-content page-body">
+	<div class="container">
+
+		<!--Page header-->
+		<div class="page-header">
+			<div class="page-leftheader">
+				<h4 class="page-title">Delete Emloyee</h4>
+				<ol class="breadcrumb pl-0">
+					<li class="breadcrumb-item"><a asp-controller="Home" asp-action="AdminIndex">Home</a></li>
+					<li class="breadcrumb-item"><a asp-controller="Home" asp-action="Delete">Delete</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Delete Employee</li>
+				</ol>
+			</div>
+		</div>
+		<!--End Page header-->
+		<!-- Row -->
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<form asp-controller="Home" asp-action="Create" class="card">
+					<div class="card-header">
+						<h3 class="card-title">Create Employee</h3>
+						<div class="card-options ">
+							<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class=" card-body">
+						<div class="row">
+							<div class="col-md-6 col-lg-12">
+
+
+								@*Name*@
+								<div class="form-group">
+									<label class="form-label" asp-for="ID">ID</label>
+									<input type="text" asp-for="ID" class="form-control" readonly>
+								</div>
+
+								@*Name*@
+								<div class="form-group">
+									<label class="form-label" asp-for="Name">Enter Name</label>
+									<input type="text" asp-for="Name" class="form-control" readonly>
+								</div>
+
+
+								@*NationalId*@
+								<div class="form-group">
+									<label class="form-label" asp-for="NationalID">National Id</label>
+									<input type="text" asp-for="NationalID" class="form-control" readonly>
+								</div>
+
+
+								@*Date of Birth*@
+								<div class="form-group">
+									<label class="form-label" asp-for="DateOfBirth">Date Of Birth</label>
+									<input type="text" asp-for="DateOfBirth" class="form-control" readonly>
+								</div>
+
+
+
+								@*Age*@
+								<div class="form-group">
+									<label asp-for="Age" class="form-label">Age</label>
+									<input type="text" asp-for="Age" class="form-control" readonly>
+								</div>
+
+
+
+								@*Account*@
+								<div class="form-group">
+									<label class="form-label" asp-for="Account.Name">Account</label>
+									<input type="text" asp-for="Account.Name" class="form-control" readonly>
+								</div>
+
+
+								@*Line of Business*@
+								<div class="form-group">
+									<label class="form-label" asp-for="LineOfBusiness.Name">Line of Business</label>
+									<input type="text" asp-for="LineOfBusiness.Name" class="form-control" readonly>
+								</div>
+
+
+								@*Language*@
+								<div class="form-group">
+									<label class="form-label" asp-for="Language.Name">Language</label>
+									<input type="text" asp-for="Language.Name" class="form-control" readonly>
+								</div>
+
+
+								@*Levels*@
+								<div class="form-group ">
+									<label class="form-label" asp-for="Leveles">Levels</label>
+									<div class="form-control">
+										@{
+											var charArray = Model.Leveles.ToCharArray();
+											foreach (var c in charArray)
+											{
+												switch (c)
+												{
+													case '1':
+														<span class="tag"><text>A1 </text></span>
+														break;
+													case '2':
+														<span class="tag"><text>A2 </text></span>
+														break;
+													case '3':
+														<span class="tag"><text>B1 </text></span>
+														break;
+													case '4':
+														<span class="tag"><text>B2 </text></span>
+														break;
+													case '5':
+														<span class="tag"><text>C1 </text></span>
+														break;
+													case '6':
+														<span class="tag"><text>C2 </text></span>
+														break;
+													default:
+														break;
+												}
+											}
+										}
+									</div>
+									<input type="text" asp-for="Leveles" class="form-control" hidden>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+					<center>
+						<div class="col-md-4 mb-5">
+							<input type="submit" asp-action="Delete" asp-controller="Home" asp-route-id="@Model.ID" class="btn btn-danger  mb-1 mr-3" value="Delete" /> 
+							<a asp-action="AdminIndex" asp-controller="Home" class="btn btn-success">Return</a>
+						</div>
+					</center>
+				</form>
+			</div>
+		</div>
+		<!-- End Row-->
+
+	</div>
+</div><!-- end app-content-->
+
