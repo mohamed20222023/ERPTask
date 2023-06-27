@@ -23,31 +23,55 @@ namespace TaskERP.Controllers
 			return View();
 		}
 
+
 		[HttpPost]
 		public async Task<IActionResult> Register(RegisterViewModel model)
 		{
 			if (ModelState.IsValid)
 			{
+				// Check if email already exists
+				if (await UserManager.FindByEmailAsync(model.Email) is not null)
+				{
+					ModelState.AddModelError(string.Empty, "Email already exists");
+					return View(model);
+				}
+
+				// Check if username already exists
+				if (await UserManager.FindByNameAsync(model.UserName) is not null)
+				{
+					ModelState.AddModelError(string.Empty, "Username already exists");
+					return View(model);
+				}
+
 				var user = new IdentityUser
 				{
 					UserName = model.UserName,
 					Email = model.Email,
-					
 				};
 
-				
-				var result = await UserManager.CreateAsync(user, model.Password);
-				if (result.Succeeded)
-					return RedirectToAction(nameof(Login));
-				foreach (var error in result.Errors)
-					ModelState.AddModelError(string.Empty, error.Description);
-				await UserManager.AddToRoleAsync(user, "User");
+				try
+				{
+					var result = await UserManager.CreateAsync(user, model.Password);
+					if (result.Succeeded)
+					{
+						await UserManager.AddToRoleAsync(user, "User");
+						return RedirectToAction(nameof(Login));
+					}
+					foreach (var error in result.Errors)
+					{
+						ModelState.AddModelError(string.Empty, error.Description);
+					}
+				}
+				catch (Exception ex)
+				{
+					ModelState.AddModelError(string.Empty, "Error creating user account");
+					// Log the exception or handle it in some other way
+				}
 			}
+
 			return View(model);
 		}
 		#endregion
-
-
 
 		#region Sign In
 

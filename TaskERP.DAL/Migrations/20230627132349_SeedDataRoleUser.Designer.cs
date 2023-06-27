@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskERP.Data;
 
@@ -11,9 +12,10 @@ using TaskERP.Data;
 namespace TaskERP.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230627132349_SeedDataRoleUser")]
+    partial class SeedDataRoleUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,14 +54,14 @@ namespace TaskERP.DAL.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "5a660453-3d06-4865-a526-246b6b374058",
+                            ConcurrencyStamp = "b2261b72-c852-4470-ab71-57b508186228",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
-                            ConcurrencyStamp = "927c1f5b-2238-4c34-a174-c2f223c0f217",
+                            ConcurrencyStamp = "24255944-c689-4aba-ba65-26f473be84d6",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -159,14 +161,13 @@ namespace TaskERP.DAL.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7c5c16d-9077-4e5b-9916-6361fd73a0c5",
-                            Email = "Admin@admin.com",
+                            ConcurrencyStamp = "82904bd3-3498-40db-af21-e26023112f69",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAGhErQRAg8cdL9XG/BHVDOv2CqYC8KTpywvzxFeRmOs0EE7E4aCPkeGnsgilCSflg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP+lgR34UbbK2jzC3w2AnatB2kisGbe9002f56VUAdd7dVPuPm+jLtq2nkRveodI8g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "49fc8eb5-83dc-476f-9e35-d8a93f80bb78",
+                            SecurityStamp = "7e180a05-b85e-4e99-847c-c46624f612fa",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

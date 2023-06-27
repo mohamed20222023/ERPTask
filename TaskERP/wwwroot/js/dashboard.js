@@ -12,10 +12,10 @@ $.get({
 			},
 			series: [{
 				name: 'Employee',
-				data: data.map(i => i.Value)
+				data: /*data.map(i => i.Value)*/[10,20,30,10,70,70]
 			}],
 			xaxis: {
-				categories: data.map(i => i.Label)
+				categories:/* data.map(i => i.Label)*/ [0,20,40,60,80,100,]
 			}
 		}
 

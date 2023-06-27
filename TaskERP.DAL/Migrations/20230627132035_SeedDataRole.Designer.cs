@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskERP.Data;
 
@@ -11,9 +12,10 @@ using TaskERP.Data;
 namespace TaskERP.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230627132035_SeedDataRole")]
+    partial class SeedDataRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,16 +54,9 @@ namespace TaskERP.DAL.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "5a660453-3d06-4865-a526-246b6b374058",
+                            ConcurrencyStamp = "60283d84-48eb-4dba-b8c7-f6b9922949ea",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "2c5e174e-3b0e-446f-86af-483d56fd7211",
-                            ConcurrencyStamp = "927c1f5b-2238-4c34-a174-c2f223c0f217",
-                            Name = "User",
-                            NormalizedName = "USER"
                         });
                 });
 
@@ -159,14 +154,13 @@ namespace TaskERP.DAL.Migrations
                         {
                             Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7c5c16d-9077-4e5b-9916-6361fd73a0c5",
-                            Email = "Admin@admin.com",
+                            ConcurrencyStamp = "a7cefadf-ce4d-43b1-b4d8-62398365ce91",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAGhErQRAg8cdL9XG/BHVDOv2CqYC8KTpywvzxFeRmOs0EE7E4aCPkeGnsgilCSflg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBU9p1TEMVp929w/kquAdE+HeeXr8049Pow4PXdVkpjQBORmqLS80u1bjuGJ0X10zw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "49fc8eb5-83dc-476f-9e35-d8a93f80bb78",
+                            SecurityStamp = "d96ed36e-ffc4-4750-8e0f-489ecbbdb30c",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
