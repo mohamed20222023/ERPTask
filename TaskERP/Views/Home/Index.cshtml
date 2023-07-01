@@ -47,6 +47,7 @@
 								<th class="wd-20p">Age</th>
 								<th class="wd-15p">Language</th>
 								<th class="wd-10p">Language Level</th>
+								<th class="wd-10p"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -87,6 +88,9 @@
 												}
 											}
 										}
+									</td>
+									<td class="text-center">
+										<a asp-controller="Home" asp-route-id="@item.ID" asp-action="Detail" class="btn btn-pill btn-info">Details</a>
 									</td>
 									</tr>
 							}
